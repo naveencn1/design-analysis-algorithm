@@ -1,0 +1,154 @@
+1.two sum
+Code 
+
+function twoSum_BruteForce(nums, target)
+  for i = 0 to length(nums) - 1 do
+    for j = i + 1 to length(nums) - 1 do
+      if nums[i] + nums[j] == target then
+        return [i, j]
+  end for
+  return []  // No two sum solution found
+end function
+
+2.adding two array
+Code
+ 
+function addArrays(arr1, arr2)
+  if length(arr1) != length(arr2) then
+    print("Error: Arrays must have the same length")
+    return null
+  for i = 0 to length(arr1) - 1
+    result[i] = arr1[i] + arr2[i]
+  return result
+
+3.Longest Substring without Repeating Characters
+
+Code 
+
+function longest_unique_substring(string)
+  # Initialize variables
+  longest_length := 0
+  start_index := 0
+  char_set := array with all characters as keys and boolean values as false (initialized to false)
+
+  # Loop through the string
+  for i := 0 to length(string) - 1 do
+    current_char := string[i]
+
+    # Check if character is already seen
+    if char_set[current_char] then
+      # Update start index if necessary (to remove previous occurrences)
+      start_index := max(start_index, char_set[current_char] + 1)
+    end if
+
+    # Update character set
+    char_set[current_char] := i
+
+    # Update longest length
+    longest_length := max(longest_length, i - start_index + 1)
+  end for
+
+  # Return the longest length
+  return longest_length
+end function
+
+4.Median of Two Sorted Arrays
+
+Code
+
+function findMedian(arr1, arr2):
+  # Find the total length of the combined arrays
+  total_length = len(arr1) + len(arr2)
+
+  # Initialize variables to track indices and median elements
+  i = 0
+  j = 0
+  mid_index = total_length // 2  # Integer division for median index
+  median1 = None
+  median2 = None
+
+  # Iterate through both arrays until reaching the median position
+  for k in range(total_length + 1):
+    # Get elements from each array
+    element1 = arr1[i] if i < len(arr1) else None
+    element2 = arr2[j] if j < len(arr2) else None
+
+    # Find the first two median elements
+    if median1 is None and k == mid_index:
+      median1 = element1 if element1 is not None else element2
+    elif median2 is None and k == mid_index + 1:
+      median2 = element1 if element1 is not None else element2
+      break  # Exit loop after finding both medians
+
+    # Advance the index of the smaller element
+    if element1 is None or (element2 is not None and element1 > element2):
+      j += 1
+    else:
+      i += 1
+
+  # Calculate the median based on the total length
+  if total_length % 2 == 0:
+    # Even length: average of two middle elements
+    median = (median1 + median2) / 2.0
+  else:
+    # Odd length: middle element
+    median = median1
+
+  return median
+
+5.Longest Palindromic Substring
+
+Code
+
+FUNCTION LongestPalindrome(string s)
+  length := len(s)
+  IF length < 2 THEN
+    RETURN s
+  start := 0
+  end := 0
+  FOR i := 0 TO length - 1 DO
+    len1 := ExpandAroundCenter(s, i, i)  // odd-length palindrome
+    len2 := ExpandAroundCenter(s, i, i + 1)  // even-length palindrome
+    maxLength := MAX(len1, len2)
+    IF maxLength > (end - start) THEN
+      start := i - (maxLength - 1) DIV 2
+      end := i + maxLength DIV 2
+  RETURN substring(s, start, end + 1)
+
+FUNCTION ExpandAroundCenter(string s, int left, int right)
+  WHILE left >= 0 AND right < len(s) AND s[left] = s[right] DO
+    left := left - 1
+    right := right + 1
+  RETURN right - left - 1
+
+6.Zigzag Conversion
+
+Code
+
+function convert(string, numRows)
+  if numRows == 1 or length(string) < numRows then
+    return string
+  
+  // Initialize rows to hold characters
+  rows = array with size numRows of empty strings
+
+  // Current row to write to
+  currentRow = 0
+
+  // Direction flag (true: going down, false: going up)
+  reverse = false
+
+  // Loop through each character in the string
+  for each char in string
+    // Add character to current row
+    append char to rows[currentRow]
+
+    // Change direction at top or bottom row
+    if reverse == false and currentRow == numRows - 1 then
+      reverse = true
+    else if reverse == true and currentRow == 0 then
+      reverse = false
+    end if
+
+    // Move to next row based on direction
+    if reverse == fals\
